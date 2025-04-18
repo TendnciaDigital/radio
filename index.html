@@ -89,7 +89,7 @@
       border-radius: 10px;
       margin-bottom: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-      background-image: url('');
+      background-image: url('tendenciadigital1.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -229,11 +229,11 @@
     </div>
 
     <div class="reproductor">
-      <div class="imagen-portada" style="background-image: url('tendenciadigital1.jpg');"></div>
+      <div class="imagen-portada"></div>
       <div class="info">
         <div class="texto-giratorio">
-          🎵 Artista: <span id="artista">The Weeknd</span> | Tema: <span id="tema">Blinding Lights</span> | 📻 TENDENCIA DIGITAL ON LIVE!
-        </div>
+          🎵 Artista: <span id="artista">Cargando...</span> | Tema: <span id="tema">Cargando...</span> | 📻 TENDENCIA DIGITAL ON LIVE!
+        </div> 
       </div>
       <audio controls autoplay>
         <source src="https://uk16freenew.listen2myradio.com/live.mp3" type="audio/mp3">
@@ -264,13 +264,14 @@
         </video>
       </div>
     </div>
-      <!-- Sección de Descarga -->
-      <section style="text-align: center; margin-top: 60px;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Descarga nuestra Apk</h2>
-        <a href="https://drive.google.com/file/d/1f0Y7n0XnAY2uz_EO3U7FxvLFLUS5Q-Nn/view?usp=sharing" download="Tendenciadigital.apk"
-           style="display: inline-block; padding: 15px 30px; font-size: 1.2rem; background: #6A5ACD; color: #fff; border-radius: 8px; text-decoration: none; transition: background 0.3s;">
-            📥 Descargar archivo
-        </a>
+
+    <!-- Sección de Descarga -->
+    <section style="text-align: center; margin-top: 60px;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Descarga nuestra Apk</h2>
+      <a href="https://drive.google.com/file/d/1f0Y7n0XnAY2uz_EO3U7FxvLFLUS5Q-Nn/view?usp=sharing" download="Tendenciadigital.apk"
+         style="display: inline-block; padding: 15px 30px; font-size: 1.2rem; background: #6A5ACD; color: #fff; border-radius: 8px; text-decoration: none; transition: background 0.3s;">
+          📥 Descargar archivo
+      </a>
     </section>
 
     <!-- Redes sociales -->
@@ -285,10 +286,26 @@
     <p>&copy; 2024 FM Tendencia Digital. Todos los derechos reservados</p>
   </footer>
 
+  <!-- SCRIPT: Actualiza artista y tema en tiempo real -->
+  <script>
+    function actualizarTema() {
+      fetch("http://uk16freenew.listen2myradio.com:23011/7.html")
+        .then(response => response.text())
+        .then(data => {
+          const partes = data.split(",");
+          const cancionCompleta = partes[partes.length - 1].trim();
+          const [artista, tema] = cancionCompleta.split(" - ");
+          document.getElementById("artista").textContent = artista || "Desconocido";
+          document.getElementById("tema").textContent = tema || "Sin título";
+        })
+        .catch(err => {
+          console.log("No se pudo obtener el título de la canción:", err);
+        });
+    }
+
+    actualizarTema();
+    setInterval(actualizarTema, 20000); // cada 20 segundos
+  </script>
+
 </body>
 </html>
-
-
-
-
-
