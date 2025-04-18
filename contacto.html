@@ -154,7 +154,9 @@
   <main>
     <section class="form-container">
       <h2>¿Tenés dudas o consultas?</h2>
-      <form id="contact-form">
+      <form action="https://formsubmit.co/tu-correo@ejemplo.com" method="POST">
+        <!-- Reemplazá el correo por el tuyo real -->
+
         <label for="name">Nombre Completo:</label>
         <input type="text" id="name" name="name" placeholder="Juan Pérez" required>
 
@@ -170,7 +172,13 @@
         <label for="terms">
           <input type="checkbox" id="terms" name="terms" required> Acepto los términos y condiciones
         </label>
-        
+
+        <!-- Campos ocultos para configurar FormSubmit -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde el formulario de Tendencia Digital">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://tendnciadigital.github.io/radio/gracias.html">
+
         <button type="submit">Enviar Mensaje</button>
 
         <div class="success-message" id="success-message">
@@ -184,22 +192,22 @@
     <p>&copy; 2024 FM Tendencia Digital. Todos los derechos reservados</p>
   </footer>
 
+  <!-- El JS que simulaba el envío fue comentado ya que no es necesario con FormSubmit -->
+  <!--
   <script>
     document.getElementById("contact-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      
       const success = document.getElementById("success-message");
-      
-      // Simula envío (puedes agregar fetch o email service aquí)
       success.style.display = "block";
-
-      // Resetea formulario después de 2s
       setTimeout(() => {
         success.style.display = "none";
         document.getElementById("contact-form").reset();
       }, 4000);
     });
   </script>
+  -->
 
 </body>
+</html>
+
 </html>
